@@ -17,6 +17,7 @@ A análise revelou que o churn não é um evento aleatório. Identificámos um p
 <img width="1036" height="311" alt="image" src="https://github.com/user-attachments/assets/76040796-c598-4eab-8124-6fd19473ee54" />
 Nota: Variáveis como credit_score e estimated_salary não mostraram correlação significativa com o churn.
 
+
 4. Recomendações Estratégicas para o Negócio
 
 Com base nestas descobertas, propomos um plano de ação focado em três frentes:
