@@ -1,5 +1,5 @@
 # Bank-Customer-Churn---Analysis
-Customer Churn Analysis and Insights  Análise Exploratória de Dados (EDA) para identificar os fatores críticos de churn (cancelamento).  Tecnologias: Python, Pandas, Matplotlib/Seaborn.
+Customer Churn Analysis and Insights  Análise Exploratória de Dados (EDA) para identificar os fatores críticos de churn (cancelamento).  Tecnologias: Python, Pandas, Matplotlib/Seaborn e Looker Studio.
 Análise de Churn de Clientes Bancários - Foco em Estratégia de Negócio
 
 1. Problema de Negócio
