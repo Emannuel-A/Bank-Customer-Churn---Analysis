@@ -15,43 +15,6 @@ O objetivo principal desta análise exploratória de dados (EDA) é identificar 
 A análise revelou que o churn não é um evento aleatório. Identificámos um perfil claro de cliente com alto risco de cancelamento, caracterizado por cinco fatores principais:
 
 <img width="1036" height="311" alt="image" src="https://github.com/user-attachments/assets/76040796-c598-4eab-8124-6fd19473ee54" />
-
-Fator de Risco
-
-Perfil Identificado
-
-Nível de Impacto
-
-Número de Produtos
-
-Clientes com 3 ou 4 produtos
-
-CRÍTICO
-
-Engajamento
-
-Membros Inativos
-
-ALTO
-
-Idade
-
-Clientes mais velhos
-
-ALTO
-
-Género
-
-Clientes do sexo Feminino
-
-MÉDIO
-
-Localização
-
-Clientes na Alemanha
-
-MÉDIO
-
 Nota: Variáveis como credit_score e estimated_salary não mostraram correlação significativa com o churn.
 
 4. Recomendações Estratégicas para o Negócio
@@ -70,6 +33,7 @@ Criar um fluxo de comunicação proativo para reativar membros inativos antes qu
 5. Como Utilizar este Repositório
 
 O notebook Bank_Customer_Churn_Revisado.ipynb contém toda a análise de dados, desde o tratamento inicial até à geração dos gráficos e insights aqui apresentados.
+Abrir o link do Dashboard(link abaixo) interativo para acompanhamento dos KPIs.
 
 Tecnologias utilizadas: Python, Pandas, Matplotlib, Seaborn e para o Dashboard o Looker Studio.
 
