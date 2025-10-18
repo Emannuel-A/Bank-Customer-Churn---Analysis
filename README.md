@@ -14,6 +14,8 @@ O objetivo principal desta análise exploratória de dados (EDA) é identificar 
 
 A análise revelou que o churn não é um evento aleatório. Identificámos um perfil claro de cliente com alto risco de cancelamento, caracterizado por cinco fatores principais:
 
+<img width="1036" height="311" alt="image" src="https://github.com/user-attachments/assets/76040796-c598-4eab-8124-6fd19473ee54" />
+
 Fator de Risco
 
 Perfil Identificado
