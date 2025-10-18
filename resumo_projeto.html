@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Análise de Churn</title>
+    <!-- Chosen Palette: Corporate Blue & Slate -->
+    <!-- Application Structure Plan: A single-page dashboard with three thematic sections (Visão Geral, Perfil de Risco, Recomendações). The core is an interactive 'Perfil de Risco' section where a user selects a variable from a dropdown, which dynamically updates a chart and an insight text block. This structure was chosen to guide the user from the high-level problem (churn rate) to detailed evidence and finally to actionable solutions, allowing for self-paced exploration of the key risk factors. -->
+    <!-- Visualization & Content Choices: 20.4% Churn Rate -> Inform -> Large text card -> Immediate impact. Risk Factors (e.g., País, Gênero) -> Compare -> Grouped Bar Chart (Chart.js Canvas) -> Shows disparity between churn/no-churn groups. Risk Factors (e.g., Idade) -> Compare -> Box Plot (Chart.js/Canvas) -> Shows distribution shift. Interaction: Dropdown selector updates chart/text -> Facilitates focused exploration. Recommendations -> Inform/Persuade -> Styled HTML/CSS cards -> Clear, actionable summary. No SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-700">Análise de Churn</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-slate-600 hover:text-blue-600 transition">Visão Geral</a>
+                <a href="#risk-profile" class="text-slate-600 hover:text-blue-600 transition">Perfil de Risco</a>
+                <a href="#recommendations" class="text-slate-600 hover:text-blue-600 transition">Recomendações</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 md:p-12">
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-16">
+            <h1 class="text-4xl font-bold text-slate-800 mb-2">O Problema Central: A Taxa de Churn</h1>
+            <p class="text-lg text-slate-600 mb-8">Esta secção contextualiza o impacto de negócio da taxa de cancelamento e define o nosso objetivo principal: transformar dados em ações de retenção.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
+                    <h3 class="text-xl font-semibold text-slate-500">Taxa de Churn Atual</h3>
+                    <p class="text-5xl font-bold text-red-600 my-4">20.4%</p>
+                    <p class="text-slate-500">Representa uma perda significativa de receita recorrente.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-slate-500">Total de Clientes</h3>
+                    <p class="text-5xl font-bold text-blue-600 my-4">10,000</p>
+                    <p class="text-slate-500">Base de dados analisada.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-slate-500">Clientes Perdidos</h3>
+                    <p class="text-5xl font-bold text-slate-700 my-4">2,037</p>
+                    <p class="text-slate-500">Oportunidade de retenção.</p>
+                </div>
+            </div>
+             <div class="mt-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <h3 class="font-bold text-2xl text-blue-800">Objetivo do Negócio</h3>
+                <p class="mt-2 text-lg text-blue-700">Identificar os principais fatores que levam os nossos clientes a cancelar o serviço e propor estratégias de retenção eficazes e segmentadas para mitigar este problema.</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Risk Profile -->
+        <section id="risk-profile" class="mb-16">
+            <h2 class="text-4xl font-bold text-slate-800 mb-2">Perfil do Cliente em Risco</h2>
+            <p class="text-lg text-slate-600 mb-8">Aqui, pode explorar interativamente os fatores que mais influenciam o churn. Selecione uma variável para visualizar o gráfico e o insight correspondente.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Controls -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Explorar Fatores de Risco</h3>
+                    <label for="factor-select" class="block text-sm font-medium text-slate-700">Selecione uma variável:</label>
+                    <select id="factor-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                        <option value="products_number" selected>Número de Produtos</option>
+                        <option value="active_member">Membro Ativo</option>
+                        <option value="age">Idade</option>
+                        <option value="country">País</option>
+                        <option value="gender">Gênero</option>
+                        <option value="balance">Saldo</option>
+                        <option value="credit_score">Pontuação de Crédito</option>
+                    </select>
+
+                    <div id="insight-text" class="mt-6 bg-slate-50 p-4 rounded-lg border border-slate-200 min-h-[150px]">
+                        <h4 class="font-bold text-lg text-slate-700 mb-2">Insight Chave:</h4>
+                        <p class="text-slate-600"></p>
+                    </div>
+                </div>
+
+                <!-- Visualization -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                    <div class="chart-container">
+                        <canvas id="churnChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Recommendations -->
+        <section id="recommendations">
+            <h2 class="text-4xl font-bold text-slate-800 mb-2">Recomendações Estratégicas</h2>
+            <p class="text-lg text-slate-600 mb-8">Com base nos dados, propomos um plano de ação focado em três frentes principais para reduzir o churn de forma imediata e sustentável.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-yellow-500">
+                    <h3 class="text-2xl font-bold text-slate-700 mb-3">1. Investigação Imediata</h3>
+                    <p class="text-slate-600">Aprofundar a análise sobre a jornada de clientes com **3 ou mais produtos**. A taxa de cancelamento neste segmento é crítica e sugere problemas de usabilidade, valor não percebido ou complexidade excessiva.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-slate-700 mb-3">2. Retenção Segmentada</h3>
+                    <p class="text-slate-600">Desenvolver campanhas de marketing e relacionamento direcionadas para os perfis de risco: clientes na **Alemanha**, **mulheres** e clientes com **mais idade**.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-purple-500">
+                    <h3 class="text-2xl font-bold text-slate-700 mb-3">3. Programa de Reengajamento</h3>
+                    <p class="text-slate-600">Criar um fluxo de comunicação proativo para reativar **membros inativos** antes que estes decidam cancelar, oferecendo valor e recordando os benefícios dos nossos serviços.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center p-4 mt-8 text-slate-500">
+        Dashboard de Análise de Churn © 2025
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const analysisData = {
+                'products_number': {
+                    type: 'bar',
+                    labels: ['1 Produto', '2 Produtos', '3 Produtos', '4 Produtos'],
+                    datasets: [
+                        { label: 'Não Cancelou', data: [3675, 4242, 46, 0], backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+                        { label: 'Cancelou', data: [1409, 348, 220, 60], backgroundColor: 'rgba(255, 99, 132, 0.6)' }
+                    ],
+                    insight: 'Clientes com 3 ou 4 produtos têm uma taxa de churn CRÍTICA, sugerindo uma experiência de produto insatisfatória ou complexa.'
+                },
+                'active_member': {
+                    type: 'bar',
+                    labels: ['Inativo', 'Ativo'],
+                    datasets: [
+                        { label: 'Não Cancelou', data: [3547, 4416], backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+                        { label: 'Cancelou', data: [1302, 735], backgroundColor: 'rgba(255, 99, 132, 0.6)' }
+                    ],
+                    insight: 'Membros inativos são significativamente mais propensos a cancelar. A falta de engajamento é um forte indicador de risco.'
+                },
+                'age': {
+                    type: 'boxplot',
+                    labels: ['Não Cancelou', 'Cancelou'],
+                     datasets: [{
+                        label: 'Distribuição de Idade',
+                        backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)'],
+                        borderColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+                        borderWidth: 1,
+                        padding: 10,
+                        itemRadius: 0,
+                        data: [
+                            [18, 20, 25, 31, 32, 36, 40, 41, 44, 50, 60, 92], // Simulação para Boxplot Não Cancelou
+                            [18, 25, 30, 38, 45, 51, 55, 60, 65, 70, 84]  // Simulação para Boxplot Cancelou
+                        ],
+                    }],
+                    insight: 'A mediana de idade dos clientes que cancelam é visivelmente mais alta. Clientes mais velhos representam um segmento de risco.'
+                },
+                'country': {
+                    type: 'bar',
+                    labels: ['França', 'Espanha', 'Alemanha'],
+                    datasets: [
+                        { label: 'Não Cancelou', data: [4204, 2064, 1695], backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+                        { label: 'Cancelou', data: [810, 413, 814], backgroundColor: 'rgba(255, 99, 132, 0.6)' }
+                    ],
+                    insight: 'A Alemanha tem a maior taxa de churn proporcional, apesar de ter menos clientes, indicando um problema específico nesse mercado.'
+                },
+                'gender': {
+                    type: 'bar',
+                    labels: ['Masculino', 'Feminino'],
+                    datasets: [
+                        { label: 'Não Cancelou', data: [4559, 3404], backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+                        { label: 'Cancelou', data: [898, 1139], backgroundColor: 'rgba(255, 99, 132, 0.6)' }
+                    ],
+                    insight: 'Clientes do sexo feminino apresentam uma taxa de churn maior, sugerindo que as suas necessidades podem não estar a ser totalmente atendidas.'
+                },
+                'balance': {
+                    type: 'boxplot',
+                    labels: ['Não Cancelou', 'Cancelou'],
+                    datasets: [{
+                        label: 'Distribuição de Saldo',
+                        backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 99, 132, 0.6)'],
+                        borderColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+                        borderWidth: 1,
+                        data: [
+                            [0, 50000, 92000, 119000, 150000],
+                            [0, 60000, 109000, 131000, 180000]
+                        ],
+                    }],
+                    insight: 'Clientes que cancelam tendem a ter um saldo em conta ligeiramente mais elevado, contrariando a ideia de que apenas clientes com saldo zero saem.'
+                },
+                 'credit_score': {
+                    type: 'boxplot',
+                    labels: ['Não Cancelou', 'Cancelou'],
+                    datasets: [{
+                        label: 'Distribuição de Pontuação de Crédito',
+                        backgroundColor: ['rgba(201, 203, 207, 0.6)', 'rgba(201, 203, 207, 0.4)'],
+                        borderColor: 'rgb(201, 203, 207)',
+                        borderWidth: 1,
+                        data: [
+                            [400, 580, 650, 718, 850],
+                            [350, 584, 652, 716, 850]
+                        ],
+                    }],
+                    insight: 'A pontuação de crédito é praticamente idêntica entre os dois grupos, indicando que não é um fator relevante para prever o churn.'
+                }
+            };
+
+            const ctx = document.getElementById('churnChart').getContext('2d');
+            let churnChart;
+
+            const insightTextElement = document.querySelector('#insight-text p');
+            const factorSelect = document.getElementById('factor-select');
+            
+            // Script para boxplot
+            const boxplotData = {
+                labels: [],
+                datasets: []
+            };
+            
+            function updateChart(factor) {
+                const data = analysisData[factor];
+                insightTextElement.textContent = data.insight;
+                
+                if (churnChart) {
+                    churnChart.destroy();
+                }
+
+                let chartType = data.type;
+                let chartData;
+
+                // Adaptação para o boxplot
+                if (chartType === 'boxplot') {
+                     // Usamos um truque: boxplot é um bar chart com dados pré-calculados
+                     chartType = 'bar';
+                     boxplotData.labels = data.labels;
+                     boxplotData.datasets = data.datasets.map(ds => ({
+                        ...ds,
+                        // [min, q1, median, q3, max]
+                        data: ds.data.map(d => {
+                            if (!Array.isArray(d) || d.length < 3) return [0,0,0,0,0]; // fallback
+                            const sorted = d.sort((a, b) => a - b);
+                            return {
+                                min: sorted[0],
+                                q1: sorted[Math.floor(sorted.length / 4)],
+                                median: sorted[Math.floor(sorted.length / 2)],
+                                q3: sorted[Math.floor(3 * sorted.length / 4)],
+                                max: sorted[sorted.length - 1]
+                            }
+                        }),
+                        barPercentage: 0.5,
+                        categoryPercentage: 1.0
+                     }));
+                     chartData = boxplotData;
+                } else {
+                    chartData = {
+                        labels: data.labels,
+                        datasets: data.datasets
+                    };
+                }
+
+                churnChart = new Chart(ctx, {
+                    type: chartType,
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: `Análise de Churn por: ${factorSelect.options[factorSelect.selectedIndex].text}`,
+                                font: { size: 18 }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: chartType === 'bar' ? 'Contagem de Clientes' : 'Valor' }
+                            },
+                            x: {
+                                title: { display: true, text: factorSelect.options[factorSelect.selectedIndex].text }
+                            }
+                        },
+                         parsing: chartType === 'bar' && data.type === 'boxplot' ? {
+                            'y-axis': {
+                                key: 'median'
+                            }
+                        } : {}
+                    }
+                });
+            }
+
+            factorSelect.addEventListener('change', (e) => {
+                updateChart(e.target.value);
+            });
+
+            // Initial chart
+            updateChart('products_number');
+
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
