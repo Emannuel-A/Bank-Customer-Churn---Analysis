@@ -69,4 +69,7 @@ Criar um fluxo de comunicação proativo para reativar membros inativos antes qu
 
 O notebook Bank_Customer_Churn_Revisado.ipynb contém toda a análise de dados, desde o tratamento inicial até à geração dos gráficos e insights aqui apresentados.
 
-Tecnologias utilizadas: Python, Pandas, Matplotlib e Seaborn.
+Tecnologias utilizadas: Python, Pandas, Matplotlib, Seaborn e para o Dashboard o Looker Studio.
+
+Segue o Link para o Painel Interativo para acompanhamento dos KIPs:
+https://lookerstudio.google.com/embed/reporting/2d0995b7-b5ae-416a-9dd1-78342118acde/page/nTDcF
