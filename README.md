@@ -40,4 +40,4 @@ Outra opção é a do Dashboard de acompanhamento dos KPIs que é possivel vizua
 Tecnologias utilizadas: Python, Pandas, Matplotlib, Seaborn e para o Dashboard o Looker Studio.
 
 Segue o Link para o Painel Interativo para acompanhamento dos KIPs:
-[https://lookerstudio.google.com/embed/reporting/2d0995b7-b5ae-416a-9dd1-78342118acde/page/nTDcF](https://lookerstudio.google.com/reporting/463e6bb6-05bc-4982-9e39-bbe3ed6fae51)
+https://lookerstudio.google.com/s/rjz5PobXSf0
