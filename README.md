@@ -34,7 +34,8 @@ Criar um fluxo de comunicação proativo para reativar membros inativos antes qu
 5. Como Utilizar este Repositório
 
 O notebook Bank_Customer_Churn_Revisado.ipynb contém toda a análise de dados, desde o tratamento inicial até à geração dos gráficos e insights aqui apresentados.
-Abrir o link do Dashboard(link abaixo) interativo para acompanhamento dos KPIs.
+
+Outra opção é a do Dashboard de acompanhamento dos KPIs que é possivel vizualizar no link abaixo.
 
 Tecnologias utilizadas: Python, Pandas, Matplotlib, Seaborn e para o Dashboard o Looker Studio.
 
