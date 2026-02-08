@@ -1,43 +1,246 @@
-# Bank-Customer-Churn---Analysis
-Customer Churn Analysis e Insights - Análise Exploratória de Dados (EDA) para identificar os fatores críticos de churn (cancelamento).  Tecnologias: Python, Pandas, Matplotlib/Seaborn e Looker Studio.
-Análise de Churn de Clientes Bancários - Foco em Estratégia de Negócio
+# 💳 Bank Customer Churn --- Business & Advanced Analytics
 
-1. Problema de Negócio
+Transformando dados bancários em estratégias reais de retenção de
+clientes
 
-Com uma taxa de churn de 20.4%, a nossa instituição enfrenta um desafio significativo que impacta diretamente a receita e aumenta os custos de aquisição de novos clientes. Reter os clientes atuais é mais rentável do que adquirir novos. Este projeto foi desenvolvido para transformar dados brutos em inteligência acionável, respondendo a uma pergunta fundamental: Quais são os principais fatores que levam os nossos clientes a cancelar o serviço e como podemos agir para os reter?
+------------------------------------------------------------------------
 
-2. Objetivos da Análise
+## 🎯 Project Highlight
 
-O objetivo principal desta análise exploratória de dados (EDA) é identificar e visualizar os perfis de clientes com maior propensão ao cancelamento. O foco é gerar insights claros que possam ser traduzidos diretamente em estratégias de retenção para o negócio.
+-   **Churn Rate Identificada:** 20.4%\
+-   **Foco:** Retenção baseada em dados\
+-   **Abordagem:** Business Driven Analytics\
+-   **Resultado:** Insights acionáveis para estratégia bancária
 
-3. Principais Descobertas e Perfil de Risco
+------------------------------------------------------------------------
 
-A análise revelou que o churn não é um evento aleatório. Identificámos um perfil claro de cliente com alto risco de cancelamento, caracterizado por cinco fatores principais:
+## 🧠 Business Problem
 
-<img width="1036" height="311" alt="image" src="https://github.com/user-attachments/assets/76040796-c598-4eab-8124-6fd19473ee54" />
-Nota: Variáveis como credit_score e estimated_salary não mostraram correlação significativa com o churn.
+No setor bancário, churn impacta diretamente:
 
+-   Receita recorrente\
+-   Lifetime Value\
+-   Custos de aquisição\
+-   Eficiência de marketing\
+-   Market share
 
-4. Recomendações Estratégicas para o Negócio
+Pergunta central:
 
-Com base nestas descobertas, propomos um plano de ação focado em três frentes:
+**Quais clientes têm maior probabilidade de cancelar e por quê?**
 
-Investigação Imediata (Prioridade Máxima):
-Aprofundar a análise sobre a jornada de clientes com 3 ou mais produtos. A taxa de cancelamento neste segmento é alarmante e sugere problemas de usabilidade, valor não percebido ou complexidade excessiva.
+E mais importante:
 
-Campanhas de Retenção Segmentadas:
-Desenvolver campanhas de marketing e relacionamento direcionadas para os perfis de risco identificados: clientes na Alemanha, mulheres e clientes com mais idade.
+**O que o negócio pode fazer antes que isso aconteça?**
 
-Programa de Reengajamento:
-Criar um fluxo de comunicação proativo para reativar membros inativos antes que estes decidam cancelar, oferecendo valor e recordando os benefícios dos nossos serviços.
+------------------------------------------------------------------------
 
-5. Como Utilizar este Repositório
+## 🏆 Business Impact
 
-O notebook Bank_Customer_Churn_Revisado.ipynb contém toda a análise de dados, desde o tratamento inicial até à geração dos gráficos e insights aqui apresentados.
+-   Identificação de perfis críticos de churn\
+-   Identificação de variáveis irrelevantes (evita investimento errado)\
+-   Base estratégica para campanhas de retenção\
+-   Estrutura pronta para modelo preditivo
 
-Outra opção é a do Dashboard de acompanhamento dos KPIs que é possivel vizualizar no link abaixo.
+------------------------------------------------------------------------
 
-Tecnologias utilizadas: Python, Pandas, Matplotlib, Seaborn e para o Dashboard o Looker Studio.
+## 📊 Demo
 
-Segue o Link para o Painel Interativo para acompanhamento dos KIPs:
-https://lookerstudio.google.com/s/rjz5PobXSf0
+### Dashboard
+
+Looker Studio disponível no projeto.
+
+### Demo do Notebook
+
+Sugestão futura:
+
+    /images/churn_analysis_demo.gif
+
+------------------------------------------------------------------------
+
+## 📌 Dataset Overview
+
+Dados simulando clientes bancários reais:
+
+-   Demografia\
+-   Score de crédito\
+-   Engajamento\
+-   Produtos bancários\
+-   Atividade de conta\
+-   Status churn
+
+------------------------------------------------------------------------
+
+## 🛠 Tech Stack
+
+### Data Analysis
+
+-   Python\
+-   Pandas\
+-   NumPy
+
+### Data Visualization
+
+-   Matplotlib\
+-   Seaborn
+
+### BI & Monitoring
+
+-   Looker Studio
+
+------------------------------------------------------------------------
+
+## 🔬 Analytical Methodology
+
+### Data Understanding
+
+-   Estrutura
+-   Distribuição
+-   Tipagem
+
+### Data Cleaning
+
+-   Missing values
+-   Padronização
+-   Ajustes estatísticos
+
+### Exploratory Analysis
+
+-   Univariada
+-   Bivariada
+-   Multivariada
+
+### Business Insight Layer
+
+-   Tradução técnica → decisão executiva
+
+------------------------------------------------------------------------
+
+## 🚨 Key Insights
+
+### High Churn Risk Profile
+
+Clientes com maior propensão:
+
+-   Idade mais elevada\
+-   Baixa atividade\
+-   Padrões geográficos específicos\
+-   Engajamento inconsistente
+
+### Low Correlation Variables
+
+-   Credit Score\
+-   Estimated Salary
+
+Churn é mais comportamental do que financeiro isoladamente.
+
+------------------------------------------------------------------------
+
+## 🚀 Strategic Recommendations
+
+### Product Investigation
+
+Investigar clientes com múltiplos produtos:
+
+-   Complexidade de uso\
+-   UX bancária\
+-   Valor percebido
+
+### Targeted Retention Campaigns
+
+Foco em:
+
+-   Segmentos geográficos\
+-   Clientes com baixa atividade\
+-   Perfis demográficos específicos
+
+### Proactive Re-engagement Flow
+
+Criar triggers para:
+
+-   Queda de uso\
+-   Inatividade\
+-   Risco de cancelamento
+
+------------------------------------------------------------------------
+
+## 📂 Repository Structure
+
+    Bank-Customer-Churn/
+    │
+    ├── data/
+    ├── notebooks/
+    │   └── Bank_Customer_Churn.ipynb
+    ├── images/
+    ├── README.md
+
+------------------------------------------------------------------------
+
+## ▶ How to Run
+
+### Clone Repository
+
+    git clone https://github.com/Emannuel-A/Bank-Customer-Churn---Analysis.git
+
+### Create Virtual Environment
+
+    python -m venv venv
+
+### Activate
+
+Windows:
+
+    venv\Scripts\activate
+
+Linux/Mac:
+
+    source venv/bin/activate
+
+### Install Dependencies
+
+    pip install -r requirements.txt
+
+### Run Notebook
+
+    jupyter notebook
+
+------------------------------------------------------------------------
+
+## 🔮 Roadmap --- Data Product Evolution
+
+-   Feature Engineering\
+-   ML Churn Prediction Model\
+-   API Deployment\
+-   Real-time Monitoring\
+-   Drift Detection\
+-   Automated Retention Triggers
+
+------------------------------------------------------------------------
+
+## 💼 Professional Skills Demonstrated
+
+-   Business Analytics\
+-   Data Storytelling\
+-   Stakeholder Communication\
+-   Insight → Action Mindset\
+-   Data Product Thinking
+
+------------------------------------------------------------------------
+
+## 👨‍💻 Author
+
+**Emannuel Almeida**\
+Data Analytics \| Business Intelligence \| Data Products
+
+------------------------------------------------------------------------
+
+## ⭐ Support
+
+Se este projeto agregou valor:
+
+-   Dê uma estrela no repositório\
+-   Conecte-se no LinkedIn\
+-   Feedbacks são bem-vindos
+
+------------------------------------------------------------------------
+
+Built with Data, Business Mindset and Curiosity 📊
